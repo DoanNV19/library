@@ -10,6 +10,11 @@ namespace LibApp.Application.Interfaces
 {
     public interface ICountryService
     {
+        /// <summary>
+        /// Create country
+        /// </summary>
+        /// <param name="req">contry data</param>
+        /// <returns></returns>
         Task<ResultDto<CountryDtoRes>> CreateCountry(CreateCountryReq req);
     }
 }

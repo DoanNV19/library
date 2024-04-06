@@ -11,21 +11,21 @@ namespace LibApp.Infrastructure.Data
         { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var userId = Guid.NewGuid();
-            modelBuilder.Entity<User>().HasData(
-            new User
-            {
-                Id = userId,
-            });
+            //var userId = Guid.NewGuid();
+            //modelBuilder.Entity<User>().HasData(
+            //new User
+            //{
+            //    Id = userId,
+            //});
 
-            modelBuilder.Entity<Account>().HasData(
-            new Account
-            {
-                Id = Guid.NewGuid(),
-                Password = Utilities.EncryptKey("123456aA@"),
-                UserId = userId,
-                UserName="admin"
-            });
+            //modelBuilder.Entity<Account>().HasData(
+            //new Account
+            //{
+            //    Id = Guid.NewGuid(),
+            //    Password = Utilities.EncryptKey("123456aA@"),
+            //    UserId = userId,
+            //    UserName="admin"
+            //});
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Account> Accounts { get; set; }

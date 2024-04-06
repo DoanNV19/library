@@ -3,6 +3,7 @@ using System;
 using LibApp.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibApp.Infrastructure.Migrations
 {
     [DbContext(typeof(LibAppDbContext))]
-    partial class LibAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240406150937_update-borrow")]
+    partial class updateborrow
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

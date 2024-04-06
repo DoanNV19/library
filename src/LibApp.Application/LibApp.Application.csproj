@@ -13,6 +13,14 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Models\Requests\Borrow\" />
+    <None Remove="Models\Responses\Borrow\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Requests\Borrow\" />
+    <Folder Include="Models\Responses\Borrow\" />
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

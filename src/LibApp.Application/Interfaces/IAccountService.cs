@@ -3,8 +3,14 @@ using LibApp.Application.Models.Responses;
 
 namespace LibApp.Application.Interfaces
 {
-    public interface IUserService
+    public interface IAccountService
     {
-        Task<UpdateUserRes> UpdateUserInfomation(UpdateUserReq req, string userId);
+        /// <summary>
+        /// Create account
+        /// </summary>
+        /// <param name="account">data account</param>
+        /// <param name="userId">user create</param>
+        /// <returns></returns>
+        Task<bool> CreateAccount(CreateAccountReq account,string userId);
     }
 }

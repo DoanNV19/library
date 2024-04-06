@@ -15,6 +15,12 @@ namespace LibApp.WebApi.Controllers
         {
             _authenService = authenService;
         }
+
+        /// <summary>
+        /// Login Api return token and user information
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Login")]
         public async Task<IActionResult> Login(AuthenReq req)

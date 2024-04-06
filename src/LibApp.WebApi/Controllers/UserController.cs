@@ -3,12 +3,14 @@ using LibApp.Application.Interfaces;
 using LibApp.Application.Models.Requests;
 using LibApp.Application.Models.Responses;
 using Microsoft.AspNetCore.Authorization;
+using LibApp.Application.Models.Requests.User;
+using LibApp.Application.Models.Responses.User;
 
 namespace LibApp.WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private readonly IUserService _userService;
 
@@ -22,35 +24,10 @@ namespace LibApp.WebApi.Controllers
         /// </summary>
         /// <param name="user">User information</param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task<ActionResult<CreateUserRes>> CreateUser(CreateUserReq user)
+        [HttpPut]
+        public async Task<ActionResult<UpdateUserRes>> UpdateUserInfomation(UpdateUserReq user)
         {
-            var result = await _userService.CreateUser(user);
-            return Ok(result);
-        }
-
-        /// <summary>
-        /// ValidateUser
-        /// </summary>
-        /// <param name="req"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public async Task<ActionResult<ValidateUserRes>> ValidateUser(ValidateUserReq req)
-        {
-            var result = await _userService.ValidateUser(req);
-            return Ok(result);
-        }
-
-        /// <summary>
-        /// Get all active user
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Authorize]
-        public async Task<ActionResult<GetAllActiveUsersRes>> GetAllActiveUsers()
-        {
-            var a = User.Claims;
-            var result = await _userService.GetAllActiveUsers();
+            var result = await _userService.UpdateUserInfomation(user,GetUserId());
             return Ok(result);
         }
     }

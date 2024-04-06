@@ -43,6 +43,17 @@ namespace LibApp.Infrastructure.Repositories
         public async Task<T> AddAsync(T entity)
         {
             entity.CreatedOn = DateTime.Now;
+            entity.LastModifiedOn = DateTime.Now;
+            await _dbContext.Set<T>().AddAsync(entity);
+            return entity;
+        }
+
+        public async Task<T> AddAsync(T entity,string id)
+        {
+            entity.CreatedOn = DateTime.Now;
+            entity.CreatedBy = new Guid(id);
+            entity.LastModifiedBy = new Guid(id);
+            entity.LastModifiedOn = DateTime.Now;
             await _dbContext.Set<T>().AddAsync(entity);
             return entity;
         }
@@ -50,6 +61,12 @@ namespace LibApp.Infrastructure.Repositories
         public void Update(T entity)
         {
             entity.LastModifiedOn = DateTime.Now;
+            _dbContext.Set<T>().Update(entity);
+        }
+        public void Update(T entity, string id)
+        {
+            entity.LastModifiedOn = DateTime.Now;
+            entity.LastModifiedBy = new Guid(id);
             _dbContext.Set<T>().Update(entity);
         }
 

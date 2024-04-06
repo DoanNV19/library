@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using LibApp.Application.Interfaces;
 using LibApp.Application.Models.Requests;
 using LibApp.Application.Models.Responses;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LibApp.WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AccountController : ControllerBase
+    public class AccountController : BaseController
     {
         private readonly IAccountService _accountService;
         public AccountController(IAccountService accountService)
@@ -17,15 +18,16 @@ namespace LibApp.WebApi.Controllers
         }
 
         /// <summary>
-        /// Create Account
+        /// Create account
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="account">Informatin account</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<CreateUserRes>> CreateAccount(CreateAccountReq account)
+        [Authorize]
+        public async Task<ActionResult<CreateAccountRes>> CreateAccount(CreateAccountReq account)
         {
             var result = new ResultDto<string>(false);
-            _ = await _accountService.CreateAccount(account);
+            _ = await _accountService.CreateAccount(account,GetUserId());
             return Ok(result);
         }
     }

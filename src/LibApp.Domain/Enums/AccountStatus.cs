@@ -1,8 +1,9 @@
 namespace LibApp.Domain.Enums
 {
-    public enum UserStatus
+    public enum BookStatus
     {
-        Active = 1,
-        InActive = 2
+        Available = 1,
+        Borrowed = 2,
+        Broken = 3,
     }
 }

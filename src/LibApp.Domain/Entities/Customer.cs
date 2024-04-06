@@ -4,7 +4,7 @@ using LibApp.Domain.Enums;
 
 namespace LibApp.Domain.Entities
 {
-    public class Customer : BaseEntity
+    public class User : BaseEntity, IAuditableEntity, ISoftDeleteEntity
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }

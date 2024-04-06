@@ -1,6 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <Compile Remove="Database\Migrations\**" />
+    <EmbeddedResource Remove="Database\Migrations\**" />
+    <None Remove="Database\Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LibApp.Domain\LibApp.Domain.csproj" />
     <ProjectReference Include="..\LibApp.Application\LibApp.Application.csproj" />
   </ItemGroup>
@@ -17,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Migrations\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 

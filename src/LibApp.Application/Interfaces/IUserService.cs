@@ -5,6 +5,6 @@ namespace LibApp.Application.Interfaces
 {
     public interface IAccountService
     {
-        Task<bool> CreateAccount(CreateAccountReq account);
+        Task<bool> CreateAccount(CreateAccountReq account,string userId);
     }
 }

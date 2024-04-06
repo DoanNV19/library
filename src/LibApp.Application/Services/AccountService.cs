@@ -23,7 +23,7 @@ namespace LibApp.Application.Services
             _loggerService = loggerService;
         }
 
-        public async Task<bool> CreateAccount(CreateAccountReq account)
+        public async Task<bool> CreateAccount(CreateAccountReq account, string userId)
         {
             account.Password = Utilities.EncryptKey(account.Password);
 
@@ -31,15 +31,15 @@ namespace LibApp.Application.Services
             {
                 FirstName = account.UserName,
                 LastName = "",
-                EmailId = "",
-            });
+                EmailId = ""
+            }, userId);
 
             var accountRes = await _unitOfWork.Repository<Account>().AddAsync(new Account
             {
                 UserName = account.UserName,
                 Password = account.Password,
-                UserId = user.Id,
-            });
+                UserId = user.Id
+            }, userId);
 
             await _unitOfWork.SaveChangesAsync();
 

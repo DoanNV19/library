@@ -1,10 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using LibApp.Domain.Enums;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace LibApp.Application.Models.Requests
+namespace LibApp.Application.Models.Requests.User
 {
-    public class CreateUserReq
+    public class UpdateUserReq
     {
+        [Required]
+        public Guid Id { get; set; }
+
         [Required]
         [MaxLength(50)]
         public string FirstName { get; set; }
@@ -16,12 +23,5 @@ namespace LibApp.Application.Models.Requests
         [Required]
         [MaxLength(50)]
         public string EmailId { get; set; }
-
-        [Required]
-        [MaxLength(50)]
-        public string Password { get; set; }
-
-        [Required]
-        public UserStatus Status { get; set; }
     }
 }

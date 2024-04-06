@@ -13,6 +13,10 @@ namespace LibApp.Application
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IJwtUtils, JwtUtils>();
             services.AddScoped<IAuthenService, AuthenService>();
+            services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IAuthorService, AuthorService>();
+            services.AddScoped<IBorrowService, BorrowService>();
+            services.AddScoped<ICustomerService, CustomerService>();
         }
     }
 }

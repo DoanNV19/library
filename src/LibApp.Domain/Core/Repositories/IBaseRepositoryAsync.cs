@@ -10,7 +10,9 @@ namespace LibApp.Domain.Core.Repositories
         Task<IList<T>> ListAsync(ISpecification<T> spec);
         Task<T?> FirstOrDefaultAsync(ISpecification<T?> spec);
         Task<T> AddAsync(T entity);
+        Task<T> AddAsync(T entity, string id);
         void Update(T entity);
+        void Update(T entity, string id);
         void Delete(T entity);
         Task<int> CountAsync(ISpecification<T> spec);
     }

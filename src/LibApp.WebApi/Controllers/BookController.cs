@@ -1,6 +1,7 @@
 ﻿using LibApp.Application.Interfaces;
 using LibApp.Application.Models.Requests.Authen;
 using LibApp.Application.Models.Requests.Book;
+using LibApp.Application.Models.Responses.Common;
 using LibApp.Application.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -39,6 +40,30 @@ namespace LibApp.WebApi.Controllers
         public async Task<IActionResult> GetBook(Guid id)
         {
             return Ok(await _bookService.GetBook(id));
+        }
+        
+        /// <summary>
+        /// Soft delete book
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> DeleteBook(Guid id)
+        {
+            return Ok(await _bookService.DeleteBook(id));
+        }
+        
+        /// <summary>
+        /// Get book by paging
+        /// </summary>
+        /// <param name="req">page information</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("GetPageBook")]
+        public async Task<IActionResult> GetPageBook(PagerReq req)
+        {
+            return Ok(await _bookService.GetPageBook(req));
         }
     }
 }

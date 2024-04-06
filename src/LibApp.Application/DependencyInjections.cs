@@ -17,6 +17,7 @@ namespace LibApp.Application
             services.AddScoped<IAuthorService, AuthorService>();
             services.AddScoped<IBorrowService, BorrowService>();
             services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ICountryService, CountryService>();
         }
     }
 }

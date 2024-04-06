@@ -14,6 +14,7 @@ using Mapster;
 using LibApp.Application.Models.Responses.Book;
 using LibApp.Application.Models.Requests.Book;
 using LibApp.Application.Models.Responses.Author;
+using LibApp.Application.Models.Responses.Common;
 
 namespace LibApp.Application.Services
 {
@@ -44,6 +45,24 @@ namespace LibApp.Application.Services
             var result = new ResultDto<BookDtoRes>(false);
             var book = await _unitOfWork.Repository<Book>().GetByIdAsync(id, (x => x.Author));
             result.ReturnSuccess(book.Adapt<BookDtoRes>());
+            return result;
+        }
+        
+        public async Task<ResultDto<string>> DeleteBook(Guid id)
+        {
+            var result = new ResultDto<string>(true);
+            await _unitOfWork.Repository<Book>().Delete(id);
+            await _unitOfWork.SaveChangesAsync();
+            return result;
+        }
+
+        public async Task<ResultDto<PagerRes<BookDtoRes>>> GetPageBook(PagerReq req)
+        {
+            var result = new ResultDto<PagerRes<BookDtoRes>>(false);
+            var bookSpec = BookSpecifications.GetBookByKeyword(req.KeySearch);
+            var books = await _unitOfWork.Repository<Book>().ListPagingAsync(bookSpec,req.PageIndex,req.PageSize,(x=>x.Author));
+            var countBooks = await _unitOfWork.Repository<Book>().CountAsync(bookSpec);
+            result.ReturnSuccess(new PagerRes<BookDtoRes>() { Data = books.Adapt<List<BookDtoRes>>(),TotalRecord = countBooks });
             return result;
         }
     }

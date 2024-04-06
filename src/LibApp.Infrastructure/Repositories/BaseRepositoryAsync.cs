@@ -45,6 +45,12 @@ namespace LibApp.Infrastructure.Repositories
             return await ApplySpecification(spec).ToListAsync();
         }
 
+
+        public async Task<IList<T>> ListPagingAsync(ISpecification<T> spec, int PageIndex, int PageSize, params Expression<Func<T, object>>[] including)
+        {
+            return await ApplySpecification(spec, including).Skip(PageIndex - 1).Take(PageSize).ToListAsync();
+        }
+
         public async Task<T?> FirstOrDefaultAsync(ISpecification<T> spec)
         {
             return await ApplySpecification(spec).FirstOrDefaultAsync();
@@ -87,13 +93,30 @@ namespace LibApp.Infrastructure.Repositories
 
         public void Delete(T entity)
         {
-            entity.IsDeleted = true;
             _dbContext.Set<T>().Update(entity);
         }
-
-        private IQueryable<T> ApplySpecification(ISpecification<T> spec)
+        
+        public async Task Delete(Guid id)
         {
-            return SpecificationEvaluator<T>.GetQuery(_dbContext.Set<T>().AsQueryable(), spec).Where(x=>!x.IsDeleted);
+            var entity =  await _dbContext.Set<T>().Where(x => !x.IsDeleted && x.Id == id).FirstOrDefaultAsync();
+            if(entity != null)
+            {
+                entity.IsDeleted = true;
+                _dbContext.Set<T>().Update(entity);
+            }
         }
+
+        private IQueryable<T> ApplySpecification(ISpecification<T> spec, params Expression<Func<T, object>>[] including)
+        {
+            var query = SpecificationEvaluator<T>.GetQuery(_dbContext.Set<T>().AsQueryable(), spec);
+            if (including != null)
+            including.ToList().ForEach(include =>
+            {
+                if (include != null)
+                    query = query.Include(include);
+            });
+            return query.Where(x=>!x.IsDeleted);
+        }
+
     }
 }

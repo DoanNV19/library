@@ -1,4 +1,6 @@
 ﻿using LibApp.Application.Interfaces;
+using LibApp.Application.Models.Requests;
+using LibApp.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibApp.WebApi.Controllers
@@ -11,6 +13,12 @@ namespace LibApp.WebApi.Controllers
         public CustomerController(ICustomerService customerService)
         {
             _customerService = customerService;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateCustomer(CreateCustomerReq req)
+        {
+            return Ok(await _customerService.CreateCustomer(req,GetUserId()));
         }
     }
 }

@@ -1,14 +1,12 @@
-﻿using LibApp.Application.Models.Requests.User;
-using LibApp.Application.Models.Responses.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using LibApp.Application.Models.Requests;
+using LibApp.Application.Models.Responses;
+using LibApp.Application.Models.Responses.Customer;
 
 namespace LibApp.Application.Interfaces
 {
     public interface ICustomerService
     {
+        Task<ResultDto<CustomerDtoRes>> CreateCustomer(CreateCustomerReq req,string userId);
     }
 }

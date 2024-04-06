@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibApp.Application.Models.Responses.Author
+namespace LibApp.Application.Models.Responses
 {
     public class AuthorDtoRes
     {

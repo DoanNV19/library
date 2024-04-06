@@ -9,8 +9,6 @@ using LibApp.Application.Interfaces;
 using LibApp.Application.Core.Services;
 using LibApp.Domain.Core.Repositories;
 using LibApp.Application.Resources;
-using LibApp.Application.Models.Responses.Authen;
-using LibApp.Application.Models.Requests.Authen;
 
 namespace LibApp.Application.Services
 {

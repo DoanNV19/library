@@ -1,4 +1,4 @@
-﻿using LibApp.Application.Models.Responses.Author;
+﻿using LibApp.Application.Models.Responses;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibApp.Application.Models.Responses.Book
+namespace LibApp.Application.Models.Responses
 {
     public class BookDtoRes
     {

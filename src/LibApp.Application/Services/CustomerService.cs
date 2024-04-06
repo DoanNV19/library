@@ -8,9 +8,9 @@ using LibApp.Application.Models.DTOs;
 using LibApp.Application.Interfaces;
 using LibApp.Application.Core.Services;
 using LibApp.Domain.Core.Repositories;
-using LibApp.Application.Models.Requests.User;
-using LibApp.Application.Models.Responses.User;
 using Mapster;
+using LibApp.Application.Models.Responses.Customer;
+using System.Security.Principal;
 
 namespace LibApp.Application.Services
 {
@@ -23,6 +23,15 @@ namespace LibApp.Application.Services
         {
             _unitOfWork = unitOfWork;
             _loggerService = loggerService;
+        }
+
+        public async Task<ResultDto<CustomerDtoRes>> CreateCustomer(CreateCustomerReq req, string userId)
+        {
+            var result = new ResultDto<CustomerDtoRes>(false);
+            var accountRes = await _unitOfWork.Repository<Customer>().AddAsync(req.Adapt<Customer>(), userId);
+            await _unitOfWork.SaveChangesAsync();
+            result.ReturnSuccess(accountRes.Adapt<CustomerDtoRes>());
+            return result;
         }
     }
 }

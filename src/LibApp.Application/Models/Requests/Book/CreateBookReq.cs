@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibApp.Application.Models.Requests.Book
+namespace LibApp.Application.Models.Requests
 {
     public class CreateBookReq
     {

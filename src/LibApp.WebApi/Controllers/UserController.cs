@@ -3,8 +3,6 @@ using LibApp.Application.Interfaces;
 using LibApp.Application.Models.Requests;
 using LibApp.Application.Models.Responses;
 using Microsoft.AspNetCore.Authorization;
-using LibApp.Application.Models.Requests.User;
-using LibApp.Application.Models.Responses.User;
 
 namespace LibApp.WebApi.Controllers
 {

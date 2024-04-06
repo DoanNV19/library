@@ -7,14 +7,18 @@ using System.Threading.Tasks;
 
 namespace LibApp.Application.Models.Requests
 {
-    public class AuthenReq
+    public class CreateCustomerReq
     {
         [Required]
         [MaxLength(50)]
-        public string UserName { get; set; }
+        public string FirstName { get; set; }
 
         [Required]
         [MaxLength(50)]
-        public string Password { get; set; }
+        public string LastName { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string EmailId { get; set; }
     }
 }

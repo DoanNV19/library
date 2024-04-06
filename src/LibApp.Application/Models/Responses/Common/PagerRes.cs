@@ -1,4 +1,4 @@
-﻿namespace LibApp.Application.Models.Responses.Common
+﻿namespace LibApp.Application.Models.Responses
 {
     public class PagerRes<T>
     {

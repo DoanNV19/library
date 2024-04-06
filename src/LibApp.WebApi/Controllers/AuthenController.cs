@@ -1,7 +1,5 @@
 ﻿using LibApp.Application.Interfaces;
-using LibApp.Application.Models.Requests.Authen;
-using LibApp.Application.Models.Responses;
-using LibApp.Application.Models.Responses.Authen;
+using LibApp.Application.Models.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibApp.WebApi.Controllers

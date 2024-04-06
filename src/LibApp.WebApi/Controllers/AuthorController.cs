@@ -1,6 +1,5 @@
 ﻿using LibApp.Application.Interfaces;
-using LibApp.Application.Models.Requests.Author;
-using LibApp.Application.Models.Requests.Book;
+using LibApp.Application.Models.Requests;
 using LibApp.Application.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

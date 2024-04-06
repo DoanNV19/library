@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibApp.Application.Models.Responses.Authen
+namespace LibApp.Application.Models.Responses
 {
     public class AuthenRes
     {

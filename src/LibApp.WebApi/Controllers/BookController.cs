@@ -1,7 +1,6 @@
 ﻿using LibApp.Application.Interfaces;
-using LibApp.Application.Models.Requests.Authen;
-using LibApp.Application.Models.Requests.Book;
-using LibApp.Application.Models.Responses.Common;
+using LibApp.Application.Models.Requests;
+using LibApp.Application.Models.Responses;
 using LibApp.Application.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

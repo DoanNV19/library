@@ -1,5 +1,5 @@
 ﻿using LibApp.Application.Interfaces;
-using LibApp.Application.Models.Requests.Country;
+using LibApp.Application.Models.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibApp.WebApi.Controllers

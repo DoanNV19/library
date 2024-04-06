@@ -1,5 +1,5 @@
-﻿using LibApp.Application.Models.Requests.User;
-using LibApp.Application.Models.Responses.User;
+﻿using LibApp.Application.Models.Requests;
+using LibApp.Application.Models.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;

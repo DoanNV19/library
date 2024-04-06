@@ -15,6 +15,6 @@ namespace LibApp.Domain.Entities
         public BookStatus Status { get; set; }
         [ForeignKey("User")]
         public required Guid AuthorId { get; set; }
-        public virtual Author? Author { get; set; }
+        public virtual Author Author { get; set; }
     }
 }

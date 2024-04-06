@@ -23,7 +23,7 @@ namespace LibApp.WebApi.Controllers
         /// <param name="account">Informatin account</param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult<CreateAccountRes>> CreateAccount(CreateAccountReq account)
         {
             var result = new ResultDto<string>(false);

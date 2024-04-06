@@ -3,6 +3,7 @@ using LibApp.Infrastructure.Data;
 using LibApp.Domain.Core.Specifications;
 using LibApp.Domain.Core.Models;
 using LibApp.Domain.Core.Repositories;
+using System.Linq.Expressions;
 
 namespace LibApp.Infrastructure.Repositories
 {
@@ -15,14 +16,28 @@ namespace LibApp.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public virtual async Task<T?> GetByIdAsync(Guid id)
+        public virtual async Task<T?> GetByIdAsync(Guid id, params Expression<Func<T, object>>[] including)
         {
-            return await _dbContext.Set<T>().Where(x=>x.IsDeleted && x.Id == id).FirstAsync();
+            var query = _dbContext.Set<T>().Where(x => !x.IsDeleted && x.Id == id);
+
+            if (including != null)
+            including.ToList().ForEach(include =>
+            {
+                if (include != null)
+                    query = query.Include(include);
+            });
+            return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<IList<T>> ListAllAsync()
+        public async Task<IList<T>> ListAllAsync(params Expression<Func<T, object>>[] including)
         {
-            return await _dbContext.Set<T>().Where(x => !x.IsDeleted).ToListAsync();
+            IQueryable<T> query = _dbContext.Set<T>();
+            including.ToList().ForEach(include =>
+            {
+                if (include != null)
+                    query = query.Include(include);
+            });
+            return await query.Where(x => !x.IsDeleted).ToListAsync();
         }
 
         public async Task<IList<T>> ListAsync(ISpecification<T> spec)

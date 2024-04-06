@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibApp.Infrastructure.Migrations
 {
     [DbContext(typeof(LibAppDbContext))]
-    [Migration("20240406072850_book")]
-    partial class book
+    [Migration("20240406110619_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,6 +62,19 @@ namespace LibApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Accounts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("bafad382-721f-4128-9137-e9c903ddb3e4"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            IsDeleted = false,
+                            Password = "55de1e4b50da90d84249ab53f61a99a6959d4c6fd8a6c402670b4115c137beae",
+                            Status = 1,
+                            UserId = new Guid("72c5dc44-5905-4d58-9066-78e4a0db87ab"),
+                            UserName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("LibApp.Domain.Entities.Author", b =>
@@ -70,8 +83,8 @@ namespace LibApp.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("Country")
-                        .HasColumnType("longtext");
+                    b.Property<Guid>("CountryId")
+                        .HasColumnType("char(36)");
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("char(36)");
@@ -96,6 +109,8 @@ namespace LibApp.Infrastructure.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
 
                     b.ToTable("Authors");
                 });
@@ -192,6 +207,40 @@ namespace LibApp.Infrastructure.Migrations
                     b.ToTable("Borrows");
                 });
 
+            modelBuilder.Entity("LibApp.Domain.Entities.Country", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<Guid?>("LastModifiedBy")
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTimeOffset?>("LastModifiedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countrys");
+                });
+
             modelBuilder.Entity("LibApp.Domain.Entities.Customer", b =>
                 {
                     b.Property<Guid>("Id")
@@ -260,6 +309,15 @@ namespace LibApp.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("72c5dc44-5905-4d58-9066-78e4a0db87ab"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            IsDeleted = false
+                        });
                 });
 
             modelBuilder.Entity("LibApp.Domain.Entities.Account", b =>
@@ -271,6 +329,17 @@ namespace LibApp.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("LibApp.Domain.Entities.Author", b =>
+                {
+                    b.HasOne("LibApp.Domain.Entities.Country", "Country")
+                        .WithMany("Authors")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Country");
                 });
 
             modelBuilder.Entity("LibApp.Domain.Entities.Book", b =>
@@ -306,6 +375,11 @@ namespace LibApp.Infrastructure.Migrations
             modelBuilder.Entity("LibApp.Domain.Entities.Author", b =>
                 {
                     b.Navigation("Books");
+                });
+
+            modelBuilder.Entity("LibApp.Domain.Entities.Country", b =>
+                {
+                    b.Navigation("Authors");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,8 @@
-﻿using LibApp.Application.Models.Requests.User;
+﻿using LibApp.Application.Models.Requests.Book;
+using LibApp.Application.Models.Requests.User;
+using LibApp.Application.Models.Responses;
+using LibApp.Application.Models.Responses.Author;
+using LibApp.Application.Models.Responses.Book;
 using LibApp.Application.Models.Responses.User;
 using System;
 using System.Collections.Generic;
@@ -10,5 +14,12 @@ namespace LibApp.Application.Interfaces
 {
     public interface IBookService
     {
+        /// <summary>
+        /// Create book
+        /// </summary>
+        /// <param name="req">book information</param>
+        /// <returns></returns>
+        Task<ResultDto<BookDtoRes>> CreateBook(CreateBookReq req,string userId);
+        Task<ResultDto<BookDtoRes>> GetBook(Guid id);
     }
 }

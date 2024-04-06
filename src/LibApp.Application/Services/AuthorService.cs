@@ -11,6 +11,10 @@ using LibApp.Domain.Core.Repositories;
 using LibApp.Application.Models.Requests.User;
 using LibApp.Application.Models.Responses.User;
 using Mapster;
+using LibApp.Application.Models.Responses.Author;
+using LibApp.Application.Models.Requests.Book;
+using LibApp.Application.Models.Requests.Author;
+using System.Dynamic;
 
 namespace LibApp.Application.Services
 {
@@ -23,6 +27,24 @@ namespace LibApp.Application.Services
         {
             _unitOfWork = unitOfWork;
             _loggerService = loggerService;
+        }
+
+        public async Task<ResultDto<AuthorDtoRes>> CreateAuthor(CreateAuthorReq req,string userId)
+        {
+            var result = new ResultDto<AuthorDtoRes>(false);
+            var author = req.Adapt<Author>();
+            var authorRes = await _unitOfWork.Repository<Author>().AddAsync(author, userId);
+            result.ReturnSuccess(authorRes.Adapt<AuthorDtoRes>());
+            await _unitOfWork.SaveChangesAsync();
+            return result;
+        }
+
+        public async Task<ResultDto<AuthorDtoRes>> GetAuthor(Guid id)
+        {
+            var result = new ResultDto<AuthorDtoRes>(false);
+            var author = await _unitOfWork.Repository<Author>().GetByIdAsync(id, (x=>x.Country));
+            result.ReturnSuccess(author.Adapt<AuthorDtoRes>()); 
+            return result;
         }
     }
 }

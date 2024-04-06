@@ -8,8 +8,10 @@ namespace LibApp.Domain.Entities
     public class Author : BaseEntity
     {
         public required string Name { get; set; }
-        public string? Country { get; set; }
         public DateTimeOffset DateOfBirth { get; set; }
         public ICollection<Book>? Books { get; set; }
+        [ForeignKey("Country")]
+        public required Guid CountryId { get; set; }
+        public required Country? Country { get; set; }
     }
 }

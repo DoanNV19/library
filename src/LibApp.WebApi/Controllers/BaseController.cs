@@ -6,7 +6,8 @@ namespace LibApp.WebApi.Controllers
     {
         protected string GetUserId()
         {
-            return this.User.Claims.First(i => i.Type == "id").Value;
+            return Guid.Empty.ToString();
+            //return this.User.Claims.First(i => i.Type == "id").Value;
         }
     }
 }

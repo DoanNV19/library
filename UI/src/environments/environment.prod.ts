@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  webApi_kong: 'http://localhost:5237/api'
+  production: false,
+  webApi: 'http://192.168.1.136:5237/api'
 };

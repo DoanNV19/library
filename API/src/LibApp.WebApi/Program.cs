@@ -67,9 +67,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("RequireAdminRole", policy =>
-        policy.RequireClaim("role", "admin"));
+        policy.RequireClaim("isAdmin", "true"));
     options.AddPolicy("RequireUserRole", policy =>
-        policy.RequireClaim("role", "user"));
+        policy.RequireClaim("isAdmin", "false"));
 });
 
 builder.Services.AddCors();

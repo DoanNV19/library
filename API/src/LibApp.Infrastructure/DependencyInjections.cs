@@ -15,7 +15,7 @@ namespace LibApp.Infrastructure
         public static void ConfigureServices(IServiceCollection services, IConfiguration Configuration)
         {
             services.AddDbContext<LibAppDbContext>(options =>
-                options.UseMySQL(Configuration.GetSection("ConnectionStrings:LibAppDatabase").Value,
+                options.UseMySQL(Configuration.GetSection("ConnectionStrings:LibAppDatabase").Value!,
                 x => x.MigrationsAssembly("LibApp.Infrastructure")));
 
             services.AddScoped(typeof(IBaseRepositoryAsync<>), typeof(BaseRepositoryAsync<>));

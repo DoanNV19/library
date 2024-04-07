@@ -11,6 +11,7 @@ namespace LibApp.Domain.Entities
         public required string UserName { get; set; }
         public required string Password { get; set; }
         public AccountStatus Status { get; set; } = AccountStatus.Active;
+        public bool IsAdmin { get; set; } = false;
         [ForeignKey("User")]
         public required Guid UserId { get; set; }
         public virtual User? User { get; set; }

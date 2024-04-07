@@ -28,12 +28,13 @@ namespace LibApp.Application.Resources
         {
             // generate token that is valid for 15 minutes
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_config.GetSection("Jwt:SigningKey").Value);
+            var key = Encoding.ASCII.GetBytes(_config.GetSection("Jwt:SigningKey").Value!);
             var claims = new List<Claim>()
             {
                 new Claim("sub", account.UserName),
                 new Claim("name", account.UserName),
-                new Claim("aud", _config.GetSection("Jwt:Audience").Value),
+                new Claim("isAdmin", account.IsAdmin ? "true":"false"),
+                new Claim("aud", _config.GetSection("Jwt:Audience").Value!),
                 new Claim("id", account.Id.ToString())
             };
             var tokenDescriptor = new SecurityTokenDescriptor

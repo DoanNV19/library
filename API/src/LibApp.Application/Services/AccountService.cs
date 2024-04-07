@@ -5,6 +5,7 @@ using LibApp.Application.Interfaces;
 using LibApp.Application.Core.Services;
 using LibApp.Domain.Core.Repositories;
 using LibApp.Application.Resources;
+using LibApp.Domain.Specifications;
 
 namespace LibApp.Application.Services
 {
@@ -47,9 +48,18 @@ namespace LibApp.Application.Services
             return result;
         }
 
-        public async Task<bool> CreateAccount(CreateAccountReq account, string userId)
+        public async Task<ResultDto<string>> CreateAccount(CreateAccountReq account, string userId)
         {
+            var result = new ResultDto<string>(true);
             account.Password = Utilities.EncryptKey(account.Password);
+
+            var accountSpec = AccountSpecifications.GetAccountByUserName(account.UserName);
+            var accountExits = await _unitOfWork.Repository<Account>().FirstOrDefaultAsync(accountSpec!);
+            if(accountExits != null)
+            {
+                result.ReturnFail("duplicate user name");
+                return result;
+            }
 
             var user = await _unitOfWork.Repository<User>().AddAsync(new User
             {
@@ -69,7 +79,7 @@ namespace LibApp.Application.Services
 
             _loggerService.LogInfo("New user created");
 
-            return true;
+            return result;
         }
     }
 }

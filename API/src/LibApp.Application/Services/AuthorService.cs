@@ -32,7 +32,7 @@ namespace LibApp.Application.Services
         public async Task<ResultDto<AuthorDtoRes>> GetAuthor(Guid id)
         {
             var result = new ResultDto<AuthorDtoRes>(false);
-            var author = await _unitOfWork.Repository<Author>().GetByIdAsync(id, (x=>x.Country));
+            var author = await _unitOfWork.Repository<Author>().GetByIdAsync(id, (x=>x.Country!));
             result.ReturnSuccess(author.Adapt<AuthorDtoRes>()); 
             return result;
         }

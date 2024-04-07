@@ -27,9 +27,7 @@ namespace LibApp.WebApi.Controllers
         [Authorize(Policy = "RequireAdminRole")]
         public async Task<ActionResult<CreateAccountRes>> CreateAccount(CreateAccountReq account)
         {
-            var result = new ResultDto<string>(false);
-            _ = await _accountService.CreateAccount(account,GetUserId());
-            return Ok(result);
+            return Ok(await _accountService.CreateAccount(account, GetUserId()));
         }
 
         /// <summary>
@@ -42,6 +40,13 @@ namespace LibApp.WebApi.Controllers
         public async Task<IActionResult> ChangePasse(AccountChangePass req)
         {
             return Ok(await _accountService.ChangePass(req, GetUserId()));
+        }
+
+        [HttpPost]
+        [Route("ChangePassword")]
+        public async Task<IActionResult> ChangeAccountsStatus(AccountDisableReq req)
+        {
+            return Ok(await _accountService.ChangeAccountsStatus(req, GetUserId()));
         }
     }
 }

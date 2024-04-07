@@ -11,7 +11,7 @@ namespace LibApp.Application.Interfaces
         /// <param name="account">data account</param>
         /// <param name="userId">user create</param>
         /// <returns></returns>
-        Task<bool> CreateAccount(CreateAccountReq account,string userId);
+        Task<ResultDto<string>> CreateAccount(CreateAccountReq account,string userId);
         /// <summary>
         /// Change pass for current user
         /// </summary>

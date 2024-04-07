@@ -16,6 +16,8 @@ namespace LibApp.Application.Models.Responses
         public Guid AuthorId { get; set; }
         public int Page { get; set; }
         public int Price { get; set; }
+        public int Status { get; set; }
+        public DateTimeOffset CreatedOn { get; set; }
         public AuthorDtoRes? Author { get; set; }
     }
 }

@@ -45,6 +45,12 @@ namespace LibApp.Application.Interfaces
         /// <returns></returns>
         Task<ResultDto<BorrowDtoRes>> GetBorrow(Guid id);
         /// <summary>
+        /// Delete borrow
+        /// </summary>
+        /// <param name="id">Id need delete</param>
+        /// <returns></returns>
+        Task<ResultDto<string>> DeleteBorrow(Guid id);
+        /// <summary>
         /// Get paging borrow
         /// </summary>
         /// <param name="req">filter paging borrow</param>

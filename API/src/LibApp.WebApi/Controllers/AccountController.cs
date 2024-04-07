@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace LibApp.WebApi.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[controller]")]
     public class AccountController : BaseController
     {
@@ -23,7 +24,6 @@ namespace LibApp.WebApi.Controllers
         /// <param name="account">Informatin account</param>
         /// <returns></returns>
         [HttpPost]
-        //[Authorize]
         public async Task<ActionResult<CreateAccountRes>> CreateAccount(CreateAccountReq account)
         {
             var result = new ResultDto<string>(false);

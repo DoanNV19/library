@@ -81,6 +81,14 @@ namespace LibApp.Application.Services
             result.ReturnSuccess(borrowDetail.Adapt<BorrowDtoRes>());
             return result;
         }
+        public async Task<ResultDto<string>> DeleteBorrow(Guid id)
+        {
+            var result = new ResultDto<string>(false);
+            await _unitOfWork.Repository<Borrow>().Delete(id);
+            await _unitOfWork.SaveChangesAsync();
+            result.ReturnSuccess("200");
+            return result;
+        }
 
         public async Task<ResultDto<PagerRes<BorrowDtoRes>>> GetListBorrowByFilter(ListBorrowFilter req)
         {

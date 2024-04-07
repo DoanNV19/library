@@ -1,11 +1,13 @@
 ﻿using LibApp.Application.Interfaces;
 using LibApp.Application.Models.Requests;
 using LibApp.Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibApp.WebApi.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[controller]")]
     public class BorrowController : BaseController
     {
@@ -53,7 +55,7 @@ namespace LibApp.WebApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("ReturnBook/{id}")]
         public async Task<IActionResult> ReturnBook(Guid id)
         {
@@ -70,6 +72,18 @@ namespace LibApp.WebApi.Controllers
         public async Task<IActionResult> GetDetailBorrow(Guid id)
         {
             return Ok(await _borrowService.GetBorrow(id));
+        }
+
+        /// <summary>
+        /// Get detail borrow
+        /// </summary>
+        /// <param name="id">id borrow</param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> DeleteBorrow(Guid id)
+        {
+            return Ok(await _borrowService.DeleteBorrow(id));
         }
 
         /// <summary>

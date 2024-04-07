@@ -31,7 +31,7 @@ namespace LibApp.Application.Services
             var result = new ResultDto<AuthenRes>(false);
             req.Password = Utilities.EncryptKey(req.Password);
             var accountByUserName = AccountSpecifications.GetAccountByUserName(req.UserName);
-            var account = await _unitOfWork.Repository<Account>().FirstOrDefaultAsync(accountByUserName,x=>x.User!);
+            var account = await _unitOfWork.Repository<Account>().FirstOrDefaultAsync(accountByUserName!,x=>x.User!);
             if (account == null)
             {
                 return result.ReturnFail(ErrorCode.UserNotFound);

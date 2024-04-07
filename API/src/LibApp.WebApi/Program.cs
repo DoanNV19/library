@@ -50,7 +50,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opts =>
     {
         byte[] signingKeyBytes = Encoding.UTF8
-            .GetBytes(appSettings.GetSection("Jwt:SigningKey").Value);
+            .GetBytes(appSettings.GetSection("Jwt:SigningKey").Value!);
 
         opts.TokenValidationParameters = new TokenValidationParameters
         {

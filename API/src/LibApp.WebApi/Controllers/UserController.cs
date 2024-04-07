@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace LibApp.WebApi.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[controller]/[action]")]
     public class UserController : BaseController
     {

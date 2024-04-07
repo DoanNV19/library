@@ -1,0 +1,36 @@
+<div class="modal-header p-0 flex-column">
+  <!-- <div class="bg-top"></div>
+  <div class="image-icon d-flex align-items-center justify-content-center">
+    <img [src]="imgUrl" alt="" />
+  </div>
+</div>
+<div class="modal-body">
+  <div class="text-center">
+    <div class="d-flex justify-content-center">
+      <p class="m-0 text-black text-conatain fs-18">{{ TextContain }}</p>
+    </div>
+    <p>{{ TextDescription }}</p>
+  </div>
+
+  <div class="d-flex gap-4 justify-content-center mt-4 mb-2">
+    <button
+      type="button"
+      class="btn w-sm btn-primary"
+      id="delete-product"
+      (click)="ActionFinish()"
+      *ngIf="ActionFinish && TextButton.Confirm.length > 0"
+      #autofocusBtn
+    >
+      {{ TextButton.Confirm }}
+    </button>
+    <button
+      *ngIf="TextButton.Close.length > 0"
+      type="button"
+      class="btn w-sm btn-light"
+      data-bs-dismiss="modal"
+      (click)="ActionClose ? ActionClose() : modalService.dismissAll()"
+    >
+      {{ TextButton.Close }}
+    </button>
+  </div> -->
+</div>

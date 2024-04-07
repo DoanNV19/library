@@ -1,0 +1,13 @@
+.page-title-box {
+  min-height: 45px;
+}
+.sticky-custom {
+  position: fixed;
+  z-index: 1001;
+  width: 100%;
+  top: 93px;
+  position: -webkit-sticky;
+  .text-header-app {
+    line-height: 0;
+  }
+}

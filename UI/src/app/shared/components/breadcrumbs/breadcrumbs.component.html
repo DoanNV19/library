@@ -1,0 +1,25 @@
+<!-- start page title -->
+<div class="row" style="min-height: 45px">
+  <div class="col-12 sticky-custom">
+    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+      <h4 class="mb-sm-0 d-flex align-items-center gap-2 text-header-app">
+        <a *ngIf="urlBack && !isBack" routerLink="{{ urlBack }}"
+          ><i class="mdi mdi-arrow-left-bold text-secondary align-bottom fs-2 bold"></i
+        ></a>
+        <a *ngIf="isBack && !urlBack" (click)="getBack()"><i class="mdi mdi-arrow-left-bold text-secondary align-bottom fs-2 bold"></i></a>
+        {{ titleBread }}
+      </h4>
+
+      <!-- <div class="page-title-right">
+        <ol class="breadcrumb m-0">
+          <ng-container *ngFor="let item of breadcrumbItems">
+            <li class="breadcrumb-item" [ngClass]="{ active: item.active === true }">
+              {{ item.label }}
+            </li>
+          </ng-container>
+        </ol>
+      </div> -->
+    </div>
+  </div>
+</div>
+<!-- end page title -->

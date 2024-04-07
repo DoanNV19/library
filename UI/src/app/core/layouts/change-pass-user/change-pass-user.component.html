@@ -1,0 +1,219 @@
+<div class="modal-header bg-light p-3">
+  <h5 class="modal-title text-center w-100">{{ TextContain }}</h5>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="Close"
+    id="close-modal"
+    (click)="ActionClose ? ActionClose() : modalService.dismissAll()"
+  ></button>
+</div>
+<form [formGroup]="dataForm" autocomplete="off" (ngSubmit)="submitData()">
+  <div class="modal-body">
+    <div class="text-center">
+      <div class="w-100 d-flex justify-content-center flex-column align-items-center">
+        <div class="d-flex flex-column w-75 align-items-start">
+          <label class="form-label">Mật khẩu cũ <span class="text-danger">*</span></label>
+          <div class="position-relative auth-pass-inputgroup w-100">
+            <input
+              [type]="checkShowInput.currentPass ? 'text' : 'password'"
+              id="currentPass"
+              formControlName="currentPass"
+              class="form-control"
+              name="currentPass"
+              placeholder="Nhập mật khẩu cũ"
+              [maxlength]="50"
+              [ngClass]="{
+                'is-invalid': dataForm.controls['currentPass'].errors && dataForm.controls['currentPass'].touched
+              }"
+            />
+            <button
+              class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted currentPass-input"
+              type="button"
+              id="currentPass-addon"
+            >
+              <i
+                class="mdi align-middle"
+                [ngClass]="{ 'mdi-eye-off-outline': !checkShowInput.currentPass, 'mdi-eye-outline': checkShowInput.currentPass }"
+                (click)="toggleFieldTextType('currentPass')"
+              ></i>
+            </button>
+          </div>
+
+          <div *ngIf="dataForm.controls['currentPass'].errors">
+            <div
+              *ngIf="dataForm.controls['currentPass'].errors['required'] && dataForm.controls['currentPass'].touched"
+              class="invalid-feedback-custom"
+            >
+              Vui lòng nhập mật khẩu cũ.
+            </div>
+            <div
+              *ngIf="dataForm.controls['currentPass'].errors['maxlength'] && dataForm.controls['currentPass'].touched"
+              class="invalid-feedback-custom"
+            >
+              Vượt quá độ dài cho phép 50 ký tự
+            </div>
+            <div
+              *ngIf="dataForm.controls['currentPass'].errors['minlength'] && dataForm.controls['currentPass'].touched"
+              class="invalid-feedback-custom"
+            >
+              Mật khẩu phải có ít nhất 8 kí tự
+            </div>
+            <div
+              *ngIf="
+                dataForm.controls['currentPass'].errors['whitespace'] &&
+                dataForm.controls['currentPass'].touched &&
+                !dataForm.controls['currentPass'].errors['required']
+              "
+              class="invalid-feedback-custom"
+            >
+              Không được để trống
+            </div>
+          </div>
+        </div>
+        <div class="d-flex flex-column w-75 align-items-start mt-2">
+          <label class="form-label h6">Mật khẩu mới <span class="text-danger">*</span></label>
+          <div class="position-relative auth-pass-inputgroup w-100">
+            <input
+              [type]="checkShowInput.newPass ? 'text' : 'password'"
+              id="newPass"
+              formControlName="newPass"
+              class="form-control"
+              name="newPass"
+              placeholder="Nhập mật khẩu mới"
+              [maxlength]="50"
+              [ngClass]="{
+                'is-invalid': dataForm.controls['newPass'].errors && dataForm.controls['newPass'].touched
+              }"
+            />
+            <button
+              class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted currentPass-input"
+              type="button"
+              id="currentPass-addon"
+            >
+              <i
+                class="mdi align-middle"
+                [ngClass]="{ 'mdi-eye-off-outline': !checkShowInput.newPass, 'mdi-eye-outline': checkShowInput.newPass }"
+                (click)="toggleFieldTextType('newPass')"
+              ></i>
+            </button>
+          </div>
+          <div *ngIf="dataForm.controls['newPass'].errors">
+            <div
+              *ngIf="dataForm.controls['newPass'].errors['required'] && dataForm.controls['newPass'].touched"
+              class="invalid-feedback-custom"
+            >
+              Vui lòng nhập mật khẩu mới.
+            </div>
+            <div
+              *ngIf="dataForm.controls['newPass'].errors['maxlength'] && dataForm.controls['newPass'].touched"
+              class="invalid-feedback-custom"
+            >
+              Vượt quá độ dài cho phép 50 ký tự
+            </div>
+            <div
+              *ngIf="dataForm.controls['newPass'].errors['minlength'] && dataForm.controls['newPass'].touched"
+              class="invalid-feedback-custom"
+            >
+              Mật khẩu phải có ít nhất 8 kí tự
+            </div>
+            <div
+              *ngIf="
+                dataForm.controls['newPass'].errors['whitespace'] &&
+                dataForm.controls['newPass'].touched &&
+                !dataForm.controls['newPass'].errors['required']
+              "
+              class="invalid-feedback-custom"
+            >
+              Không được để trống
+            </div>
+            <div
+              *ngIf="
+                dataForm.controls['newPass'].errors['pattern'] &&
+                !dataForm.controls['newPass'].errors['required'] &&
+                dataForm.controls['newPass'].touched &&
+                !dataForm.controls['newPass'].errors['minlength']
+              "
+              class="invalid-feedback-custom"
+            >
+              Mật khẩu phải bao gồm chữ hoa, chữ thường, kí tự đặc biệt
+            </div>
+          </div>
+        </div>
+        <div class="d-flex flex-column w-75 align-items-start mt-2">
+          <label class="form-label h6">Nhập lại mật khẩu <span class="text-danger">*</span></label>
+          <div class="position-relative auth-pass-inputgroup w-100">
+            <input
+              [type]="checkShowInput.comfirmPassword ? 'text' : 'password'"
+              id="comfirmPassword"
+              formControlName="comfirmPassword"
+              class="form-control"
+              name="comfirmPassword"
+              placeholder="Nhập lại mật khẩu"
+              [maxlength]="50"
+              [ngClass]="{
+                'is-invalid': dataForm.controls['comfirmPassword'].errors && dataForm.controls['comfirmPassword'].touched
+              }"
+            />
+            <button
+              class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted currentPass-input"
+              type="button"
+              id="currentPass-addon"
+            >
+              <i
+                class="mdi align-middle"
+                [ngClass]="{ 'mdi-eye-off-outline': !checkShowInput.comfirmPassword, 'mdi-eye-outline': checkShowInput.comfirmPassword }"
+                (click)="toggleFieldTextType('comfirmPassword')"
+              ></i>
+            </button>
+          </div>
+          <div *ngIf="dataForm.controls['comfirmPassword'].errors">
+            <div
+              *ngIf="dataForm.controls['comfirmPassword'].errors['required'] && dataForm.controls['comfirmPassword'].touched"
+              class="invalid-feedback-custom"
+            >
+              Vui lòng nhập lại mật khẩu.
+            </div>
+            <div
+              *ngIf="dataForm.controls['comfirmPassword'].errors['maxlength'] && dataForm.controls['comfirmPassword'].touched"
+              class="invalid-feedback-custom"
+            >
+              Vượt quá độ dài cho phép 50 ký tự
+            </div>
+            <div
+              *ngIf="dataForm.controls['comfirmPassword'].errors['minlength'] && dataForm.controls['comfirmPassword'].touched"
+              class="invalid-feedback-custom"
+            >
+              Mật khẩu phải có ít nhất 8 kí tự
+            </div>
+            <div
+              *ngIf="
+                dataForm.controls['comfirmPassword'].errors['whitespace'] &&
+                dataForm.controls['comfirmPassword'].touched &&
+                !dataForm.controls['comfirmPassword'].errors['required']
+              "
+              class="invalid-feedback-custom"
+            >
+              Không được để trống
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex gap-4 justify-content-center mt-4 mb-2">
+      <button type="submit" class="btn w-sm btn-primary" id="delete-product" *ngIf="ActionFinish && TextButton.Confirm.length > 0">
+        {{ TextButton.Confirm }}
+      </button>
+      <button
+        *ngIf="TextButton.Close.length > 0"
+        type="button"
+        class="btn w-sm btn-light"
+        data-bs-dismiss="modal"
+        (click)="ActionClose ? ActionClose() : modalService.dismissAll()"
+      >
+        {{ TextButton.Close }}
+      </button>
+    </div>
+  </div>
+</form>

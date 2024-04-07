@@ -1,0 +1,58 @@
+#1. Yêu cầu hỗ trợ
+- Danh sách yêu cầu
+- Tìm kiếm theo nhiều tiêu chí
+- Thêm mới yêu cầu
+- Sửa yêu cầu
+- Xóa yêu cầu
+- Xem chi tiết yêu cầu
+- Thêm người xử lý yêu cầu
+- Thay đổi trạng thái yêu cầu
+- Sửa lịch sử yêu cầu
+- Xem chi tiết chat trong lịch sử
+- Xem yêu cầu liên quan
+#2. Lịch sử cuộc gọi
+- Danh sách cuộc gọi
+- Tìm kiếm cuộc gọi
+- Tạo mới yêu cầu
+- Xem thông tin chi tiết yêu cầu
+- Lưu vào yêu cầu
+- Popup danh sách cuộc gọi chưa tạo yêu cầu của cá nhân
+#3. Chat
+- Danh sách cuộc hội thoại
+- Tìm kiếm cuộc hội thoại
+#4. Quản lý người dùng
+- Danh sách người dùng
+#5. Quản lý tài khoản ZaloOa
+- Danh sách tài khoản
+- Thêm mới tài khoản
+- Sửa thông tin tài khoản
+- Xem thông tin chi tiết
+- Tìm kiếm theo nhiều tiêu chí
+- Lấy access token từ authorize code
+#6. Notification
+- Danh sách notification
+- Cập nhật số lượng chưa đọc khi đọc notification
+#7. Yêu cầu chuyển tới bạn
+- Hiển thị danh sách yêu cầu chuyển tới
+- Chấp nhận yêu cầu chuyển tới
+- Từ chối yêu cầu chuyển tới
+#8. Chức năng chung
+- Đăng nhập
+- Đăng xuất
+#9. Thống kê tổng đài
+- Thống kê cuộc gọi
+- Thống kê cuộc gọi theo tỷ lệ
+- Thống kê cuộc gọi theo nhánh
+- Thống kê cuộc gọi theo nhân viên
+#10. Thống kê yêu cầu hỗ trợ
+- Thống kê tổng hợp số lượng theo trạng thái
+- Thống kê yêu cầu hỗ trợ theo ngày
+- Biểu đồ bánh thống kê tỷ lệ theo trạng thái
+- Yêu cầu hỗ trợ theo dự an
+- Hệ thống có nhu cầu hỗ trợ cao
+- Biến động của yêu cầu
+- Trạng thái yêu cầu hỗ trợ
+- Phân loại yêu cầu hỗ trợ
+- Tình trạng xử lý
+- Mức độ ưu tiên
+- Kênh tiếp nhận

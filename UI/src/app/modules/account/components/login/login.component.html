@@ -1,0 +1,64 @@
+<div class="d-flex flex-column c-bg min-vh-100">
+  <div class="container">
+    <div class="min-vh-100 d-flex align-items-center justify-content-center">
+      <div class="c-login">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="text-center web-name-line2 h2 text-black font-weight-bold text-uppercase bold">Hệ thống quản lý thư viện</div>
+          <div class="row">
+            <div class="col-md-10 mx-auto">
+              <div class="h4 text-black mt-xl-4 mt-2 mt-lg-3">Đăng nhập</div>
+              <div class="fs-16 text-muted d-none d-sm-block">
+                Nếu bạn chưa có tài khoản, xin hãy liên hệ bộ phận có thẩm quyền để được cấp tài khoản truy cập vào hệ thống
+              </div>
+              <div class="mb-3 mt-4">
+                <label for="userName" class="form-label h6 text-black">Tên tài khoản</label>
+                <input
+                  type="text"
+                  class="form-control common-size-input"
+                  id="userName"
+                  placeholder="Vui lòng nhập tài khoản"
+                  formControlName="userName"
+                  [ngClass]="{ 'is-invalid': submitted && f['userName'].errors }"
+                />
+                <div *ngIf="submitted && f['userName'].errors" class="invalid-feedback" align="left">
+                  <div *ngIf="f['userName'].errors['required']">Tài khoản bắt buộc nhập</div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label h6 text-black" for="password-input">Mật khẩu</label>
+                <div class="position-relative auth-pass-inputgroup mb-3">
+                  <input
+                    [type]="fieldTextType ? 'text' : 'password'"
+                    class="form-control pe-5 password-input common-size-input"
+                    placeholder="Vui lòng nhập mật khẩu"
+                    id="password-input"
+                    formControlName="password"
+                    [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+                  />
+                  <button
+                    class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-input h-100"
+                    type="button"
+                    id="password-addon"
+                  >
+                    <i
+                      class="mdi align-middle"
+                      [ngClass]="{ 'mdi-eye-off-outline': !fieldTextType, 'mdi-eye-outline': fieldTextType }"
+                      (click)="toggleFieldTextType()"
+                    ></i>
+                  </button>
+                  <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                    <span *ngIf="f['password'].errors['required']">Mật khẩu bắt buộc nhập</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-primary w-100 common-size-input" type="submit">Đăng nhập</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

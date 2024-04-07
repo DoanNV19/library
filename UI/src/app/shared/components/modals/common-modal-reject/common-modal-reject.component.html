@@ -1,0 +1,71 @@
+<div class="modal-header p-0 flex-column">
+  <!-- <div class="bg-top"></div>
+  <div class="image-icon d-flex align-items-center justify-content-center">
+    <img [src]="imgUrl" alt="" />
+  </div>
+</div>
+
+<div class="modal-body">
+  <div class="text-center">
+    <div class="d-flex justify-content-center">
+      <p class="m-0 text-black text-conatain fs-18">{{ TextContain }}</p>
+    </div>
+    <form [formGroup]="dataForm" autocomplete="off">
+      <div class="w-100 d-flex justify-content-center mt-4">
+        <div class="d-flex flex-column w-75 align-items-start">
+          <label class="form-label h6">Lý do</label>
+          <textarea
+            (resize)="(false)"
+            class="w-100 p-1 form-control"
+            placeholder="Nhập lý do từ chối phê duyệt"
+            rows="3"
+            formControlName="reason"
+            [ngClass]="{
+              'is-invalid': dataForm.controls['reason'].errors && dataForm.controls['reason'].touched
+            }"
+          ></textarea>
+          <div *ngIf="dataForm.controls['reason'].errors">
+            <div
+              *ngIf="dataForm.controls['reason'].errors['required'] && dataForm.controls['reason'].touched"
+              class="invalid-feedback-custom"
+            >
+              Vui lòng nhập lí do từ chối.
+            </div>
+            <div
+              *ngIf="dataForm.controls['reason'].errors['maxlength'] && dataForm.controls['reason'].touched"
+              class="invalid-feedback-custom"
+            >
+              Vượt quá độ dài cho phép 255 ký tự
+            </div>
+            <div
+              *ngIf="dataForm.controls['reason'].errors['whitespace'] && dataForm.controls['reason'].touched"
+              class="invalid-feedback-custom"
+            >
+              Không được để khoảng trắng
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="d-flex gap-4 justify-content-center mt-4 mb-2">
+    <button
+      type="button"
+      class="btn w-sm btn-primary"
+      id="delete-product"
+      (click)="handleFinish()"
+      *ngIf="ActionFinish && TextButton.Confirm.length > 0"
+    >
+      {{ TextButton.Confirm }}
+    </button>
+    <button
+      *ngIf="TextButton.Close.length > 0"
+      type="button"
+      class="btn w-sm btn-light"
+      data-bs-dismiss="modal"
+      (click)="ActionClose ? ActionClose() : modalService.dismissAll()"
+    >
+      {{ TextButton.Close }}
+    </button>
+  </div> -->
+</div>

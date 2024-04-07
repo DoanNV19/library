@@ -18,6 +18,20 @@ namespace LibApp.Application.Interfaces
         /// <returns></returns>
         Task<ResultDto<BorrowDtoRes>> CreateBorrow(CreateBorrowReq req, string userId);
         /// <summary>
+        /// Update borrow
+        /// </summary>
+        /// <param name="req">Data</param>
+        /// <param name="userId">User Create</param>
+        /// <returns></returns>
+        Task<ResultDto<BorrowDtoRes>> UpdateBorrow(UpdateBorrowReq req, string userId);
+        /// <summary>
+        /// caculate price when return book
+        /// </summary>
+        /// <param name="req">Data</param>
+        /// <param name="userId">User Create</param>
+        /// <returns></returns>
+        Task<ResultDto<BorrowPriceDtoRes>> CaculatePriceBorrow(Guid borrowId);
+        /// <summary>
         /// Get detail borrow
         /// </summary>
         /// <param name="id">borrow id</param>

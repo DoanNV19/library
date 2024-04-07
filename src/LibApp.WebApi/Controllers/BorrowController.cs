@@ -27,6 +27,28 @@ namespace LibApp.WebApi.Controllers
         }
 
         /// <summary>
+        /// Update borrow
+        /// </summary>
+        /// <param name="req">Data</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> UpdateBorrow(UpdateBorrowReq req)
+        {
+            return Ok(await _borrowService.UpdateBorrow(req, GetUserId()));
+        }
+        /// <summary>
+        /// Caculate price when return book
+        /// </summary>
+        /// <param name="req">Data</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("CaculatePriceBorrow/{id}")]
+        public async Task<IActionResult> CaculatePriceBorrow(Guid id)
+        {
+            return Ok(await _borrowService.CaculatePriceBorrow(id));
+        }
+
+        /// <summary>
         /// Get detail borrow
         /// </summary>
         /// <param name="id">id borrow</param>

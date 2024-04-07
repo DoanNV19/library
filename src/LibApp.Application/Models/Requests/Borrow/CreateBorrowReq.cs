@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LibApp.Application.Models.Requests
 {
-	public class CreateBorrowReq
+	public class UpdateBorrowReq
 	{
-        public required Guid BookId { get; set; }
-        public required Guid CustomerId { get; set; }
+        public required Guid Id { get; set; }
+        public Guid BookId { get; set; }
+        public Guid CustomerId { get; set; }
     }
 }
 

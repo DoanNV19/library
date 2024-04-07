@@ -47,7 +47,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     }
     return this.authenticationService.refreshToken(refreshToken).pipe(
       switchMap(user => {
-        return next.handle(this.addToken(request, user.data.token ?? ''));
+        return next.handle(this.addToken(request, user.data.accessToken ?? ''));
       }),
       catchError(error => {
         // Xử lý lỗi refresh token, ví dụ: đăng xuất người dùng

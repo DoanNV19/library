@@ -10,7 +10,7 @@ namespace LibApp.Domain.Core.Repositories
         Task<IList<T>> ListAllAsync(params Expression<Func<T, object>>[] including);
         Task<IList<T>> ListAsync(ISpecification<T> spec);
         Task<IList<T>> ListPagingAsync(ISpecification<T> spec,int PageIndex, int PageSize, params Expression<Func<T, object>>[] including);
-        Task<T?> FirstOrDefaultAsync(ISpecification<T?> spec);
+        Task<T?> FirstOrDefaultAsync(ISpecification<T?> spec,params Expression<Func<T, object>>[] including);
         Task<T> AddAsync(T entity);
         Task<T> AddAsync(T entity, string id);
         void Update(T entity);

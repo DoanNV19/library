@@ -37,7 +37,7 @@ namespace LibApp.Application.Interfaces
         /// <param name="req">Data</param>
         /// <param name="userId">User Create</param>
         /// <returns></returns>
-        Task<ResultDto<BookDtoRes>> ReturnBook(Guid borrowId);
+        Task<ResultDto<BorrowDtoRes>> ReturnBook(Guid borrowId);
         /// <summary>
         /// Get detail borrow
         /// </summary>

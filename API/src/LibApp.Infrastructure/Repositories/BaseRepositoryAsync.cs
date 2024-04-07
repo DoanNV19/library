@@ -51,9 +51,9 @@ namespace LibApp.Infrastructure.Repositories
             return await ApplySpecification(spec, including).Skip(PageIndex - 1).Take(PageSize).ToListAsync();
         }
 
-        public async Task<T?> FirstOrDefaultAsync(ISpecification<T> spec)
+        public async Task<T?> FirstOrDefaultAsync(ISpecification<T> spec, params Expression<Func<T, object>>[] including)
         {
-            return await ApplySpecification(spec).FirstOrDefaultAsync();
+            return await ApplySpecification(spec, including).FirstOrDefaultAsync();
         }
 
         public async Task<int> CountAsync(ISpecification<T> spec)

@@ -10,6 +10,5 @@ export class HomePageComponent implements OnInit {
   constructor(private appService: AppService) {}
   ngOnInit(): void {
     this.breadCrumbItems = [];
-    console.log(this.appService.isSuperUser);
   }
 }

@@ -22,14 +22,14 @@ export class JwtInterceptor implements HttpInterceptor {
       }
       if (authToken && !request.url.includes('https://') && !request.url.includes('http://')) {
         request = request.clone({
-          url: environment.webApi_kong + request.url,
+          url: environment.webApi + request.url,
           setHeaders: {
             Authorization: `Bearer ${authToken}`
           }
         });
       } else if (!request.url.includes('https://') && !request.url.includes('http://')) {
         request = request.clone({
-          url: environment.webApi_kong + request.url
+          url: environment.webApi + request.url
         });
       }
     }

@@ -31,7 +31,7 @@ namespace LibApp.WebApi.Controllers
         /// </summary>
         /// <param name="req">Data</param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPut]
         public async Task<IActionResult> UpdateBorrow(UpdateBorrowReq req)
         {
             return Ok(await _borrowService.UpdateBorrow(req, GetUserId()));

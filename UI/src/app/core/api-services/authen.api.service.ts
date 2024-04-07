@@ -11,6 +11,6 @@ export class AuthenApiService {
   constructor(private http: HttpClient) {}
   signIn(userInfor: { userName: string; password: string }): Observable<CommonResponse<UserAuth>> {
     userInfor = JSON.parse(JSON.stringify(userInfor).replace(/"\s+|\s+"/g, '"'));
-    return this.http.post<CommonResponse<UserAuth>>(`/api/auth`, userInfor);
+    return this.http.post<CommonResponse<UserAuth>>(`/Authen/Login`, userInfor);
   }
 }

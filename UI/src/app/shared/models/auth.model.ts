@@ -2,7 +2,7 @@ export interface User {
   id?: number;
   userName?: string;
   fullName?: string;
-  email: string;
+  EmailId?: string;
   phone?: string;
   status?: number;
   gender?: number;
@@ -13,11 +13,11 @@ export interface User {
   roleName?: string;
   isSystem?: boolean;
 }
-export interface UserAuth extends User {
-  token?: string;
+export interface UserAuth {
+  accessToken?: string;
   refreshToken?: string;
   expireTime?: string;
-  roles: string[];
+  user: User;
 }
 
 export interface Role {

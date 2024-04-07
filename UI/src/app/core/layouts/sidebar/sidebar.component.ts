@@ -28,7 +28,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     // Menu Items
     const listMenuConfig: MenuItem[] = JSON.parse(JSON.stringify(MENU));
-    const listRole = this.appService.lstRole;
+    const listRole: any[] = [];
     this.menuItems = listMenuConfig.filter(x => listRole.includes(x.role ?? '') || !x.role);
     this.menuItems.forEach(x => {
       x.subItems = x.subItems?.filter((item: any) => listRole.includes(item.role ?? '') || !item.role);

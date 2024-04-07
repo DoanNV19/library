@@ -9,6 +9,7 @@ using LibApp.Application.Interfaces;
 using LibApp.Application.Core.Services;
 using LibApp.Domain.Core.Repositories;
 using LibApp.Application.Resources;
+using Mapster;
 
 namespace LibApp.Application.Services
 {
@@ -30,7 +31,7 @@ namespace LibApp.Application.Services
             var result = new ResultDto<AuthenRes>(false);
             req.Password = Utilities.EncryptKey(req.Password);
             var accountByUserName = AccountSpecifications.GetAccountByUserName(req.UserName);
-            var account = await _unitOfWork.Repository<Account>().FirstOrDefaultAsync(accountByUserName);
+            var account = await _unitOfWork.Repository<Account>().FirstOrDefaultAsync(accountByUserName,x=>x.User!);
             if (account == null)
             {
                 return result.ReturnFail(ErrorCode.UserNotFound);
@@ -42,7 +43,7 @@ namespace LibApp.Application.Services
             }
 
             var token = _jwtUtils.GenerateJwtToken(account);
-            return result.ReturnSuccess(new AuthenRes() { AccessToken= token });
+            return result.ReturnSuccess(new AuthenRes() { AccessToken= token, User = account.User.Adapt<UserDTO>() });
         }
     }
 }

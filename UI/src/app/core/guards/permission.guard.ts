@@ -17,10 +17,10 @@ export class PermissionGuard implements CanActivate {
       return true;
     }
 
-    if (!permission.some(element => this.appService.lstRole.indexOf(element) !== -1)) {
-      this.router.navigate(['/pages/page-403']);
-      return false;
-    }
+    // if (!permission.some(element => this.appService.lstRole.indexOf(element) !== -1)) {
+    //   this.router.navigate(['/pages/page-403']);
+    //   return false;
+    // }
 
     return true;
   }

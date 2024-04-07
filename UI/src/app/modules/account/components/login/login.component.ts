@@ -57,11 +57,11 @@ export class LoginComponent implements OnInit {
     }
     this.authenApiService.signIn(this.loginForm.value).subscribe(res => {
       if (!res.errorCode) {
-        localStorage.setItem('userInfor', JSON.stringify(res.data));
-        localStorage.setItem('token', res.data.token ?? '');
-        this.authenticationService.setAccessToken(res.data.token ?? '');
+        localStorage.setItem('userInfor', JSON.stringify(res.data.user));
+        localStorage.setItem('token', res.data.accessToken ?? '');
+        this.authenticationService.setAccessToken(res.data.accessToken ?? '');
         this.authenticationService.setRefreshAccessToken(res.data.refreshToken ?? '');
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
       } else {
         this.toastService.showError(res.errorMessage);
         this.submitted = false;

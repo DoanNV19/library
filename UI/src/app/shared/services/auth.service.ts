@@ -25,7 +25,7 @@ export class AuthenticationService {
   }
 
   refreshToken(refreshToken: string): Observable<CommonResponse<UserAuth>> {
-    const refreshTokenEndpoint = `${environment.webApi_kong}/api/auth/refresh`;
+    const refreshTokenEndpoint = `${environment.webApi}/api/auth/refresh`;
 
     return this.http.post<CommonResponse<UserAuth>>(refreshTokenEndpoint, { token: refreshToken }).pipe(
       tap((res: CommonResponse<UserAuth>) => {
@@ -33,7 +33,7 @@ export class AuthenticationService {
           this.logout();
           return;
         }
-        this.setAccessToken(res.data.token ?? '');
+        this.setAccessToken(res.data.accessToken ?? '');
         this.setRefreshAccessToken(res.data.refreshToken ?? '');
       })
     );

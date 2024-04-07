@@ -48,6 +48,21 @@ namespace LibApp.Application.Services
             return result;
         }
 
+
+        public async Task<ResultDto<string>> ChangeAccountsStatus(AccountChangeReq req, string userId)
+        {
+            var result = new ResultDto<string>(true);
+            var accountSpec = AccountSpecifications.GetAccountInList(req.Ids);
+            var accounts = (await _unitOfWork.Repository<Account>().ListAsync(accountSpec!)).ToList();
+            accounts.ForEach(x =>
+            {
+                x.Status = req.AccountStatus;
+                _unitOfWork.Repository<Account>().Update(x,userId);
+            });
+            await _unitOfWork.SaveChangesAsync();
+            return result;
+        }
+
         public async Task<ResultDto<string>> CreateAccount(CreateAccountReq account, string userId)
         {
             var result = new ResultDto<string>(true);
@@ -68,7 +83,7 @@ namespace LibApp.Application.Services
                 EmailId = ""
             }, userId);
 
-            var accountRes = await _unitOfWork.Repository<Account>().AddAsync(new Account
+            await _unitOfWork.Repository<Account>().AddAsync(new Account
             {
                 UserName = account.UserName,
                 Password = account.Password,

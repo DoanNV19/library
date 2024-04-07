@@ -19,5 +19,12 @@ namespace LibApp.Application.Interfaces
         /// <param name="userId">id user</param>
         /// <returns></returns>
         Task<ResultDto<string>> ChangePass(AccountChangePass req, string userId);
+        /// <summary>
+        /// Change account status
+        /// </summary>
+        /// <param name="req"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        Task<ResultDto<string>> ChangeAccountsStatus(AccountChangeReq req, string userId);
     }
 }

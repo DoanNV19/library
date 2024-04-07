@@ -42,9 +42,14 @@ namespace LibApp.WebApi.Controllers
             return Ok(await _accountService.ChangePass(req, GetUserId()));
         }
 
+        /// <summary>
+        /// Api change account status
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns></returns>
         [HttpPost]
-        [Route("ChangePassword")]
-        public async Task<IActionResult> ChangeAccountsStatus(AccountDisableReq req)
+        [Route("ChangeStatus")]
+        public async Task<IActionResult> ChangeAccountsStatus(AccountChangeReq req)
         {
             return Ok(await _accountService.ChangeAccountsStatus(req, GetUserId()));
         }

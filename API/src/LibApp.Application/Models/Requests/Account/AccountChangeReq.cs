@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LibApp.Application.Models.Requests
 {
-    public class AccountDisableReq
+    public class AccountChangeReq
     {
         public List<Guid> Ids { get; set; }
         public AccountStatus AccountStatus { get; set; }

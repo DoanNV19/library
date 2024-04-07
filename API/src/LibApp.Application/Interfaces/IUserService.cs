@@ -11,6 +11,6 @@ namespace LibApp.Application.Interfaces
         /// <param name="req">information user include first name, last name, email</param>
         /// <param name="userId">user update information user</param>
         /// <returns></returns>
-        Task<UpdateUserRes> UpdateUserInfomation(UpdateUserReq req, string userId);
+        Task<UpdateUserRes> UpdateUserInformation(UpdateUserReq req, string userId);
     }
 }

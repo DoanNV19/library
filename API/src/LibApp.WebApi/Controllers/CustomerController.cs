@@ -17,6 +17,11 @@ namespace LibApp.WebApi.Controllers
             _customerService = customerService;
         }
 
+        /// <summary>
+        /// Create customer borrow book
+        /// </summary>
+        /// <param name="req">Information</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CreateCustomer(CreateCustomerReq req)
         {

@@ -19,14 +19,14 @@ namespace LibApp.WebApi.Controllers
         }
 
         /// <summary>
-        /// Create uer
+        /// Update user information
         /// </summary>
         /// <param name="user">User information</param>
         /// <returns></returns>
         [HttpPut]
-        public async Task<ActionResult<UpdateUserRes>> UpdateUserInfomation(UpdateUserReq user)
+        public async Task<ActionResult<UpdateUserRes>> UpdateUserInformation(UpdateUserReq user)
         {
-            var result = await _userService.UpdateUserInfomation(user,GetUserId());
+            var result = await _userService.UpdateUserInformation(user,GetUserId());
             return Ok(result);
         }
     }

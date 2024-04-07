@@ -16,6 +16,11 @@ namespace LibApp.WebApi.Controllers
             _countryService = countryService;
         }
 
+        /// <summary>
+        /// Create country api
+        /// </summary>
+        /// <param name="req">infomation country</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CreateCountry(CreateCountryReq req)
         {

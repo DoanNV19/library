@@ -23,7 +23,7 @@ namespace LibApp.Application.Services
             _loggerService = loggerService;
         }
 
-        public async Task<UpdateUserRes> UpdateUserInfomation(UpdateUserReq req, string userId)
+        public async Task<UpdateUserRes> UpdateUserInformation(UpdateUserReq req, string userId)
         {
             var userUpdate = await _unitOfWork.Repository<User>().GetByIdAsync(req.Id);
             userUpdate.FirstName = req.FirstName;

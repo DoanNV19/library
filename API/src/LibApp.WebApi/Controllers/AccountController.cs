@@ -30,6 +30,17 @@ namespace LibApp.WebApi.Controllers
             _ = await _accountService.CreateAccount(account,GetUserId());
             return Ok(result);
         }
+
+        /// <summary>
+        /// Create account
+        /// </summary>
+        /// <param name="account">Informatin account</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> ChangePasse(AccountChangePass req)
+        {
+            return Ok(await _accountService.ChangePass(req, GetUserId()));
+        }
     }
 }
 
